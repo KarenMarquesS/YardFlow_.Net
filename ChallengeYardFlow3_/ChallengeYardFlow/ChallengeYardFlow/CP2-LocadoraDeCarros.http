@@ -1,0 +1,6 @@
+@ChallengeYardFlow_HostAddress = http://localhost:5103
+
+GET {{ChallengeYardFlow_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

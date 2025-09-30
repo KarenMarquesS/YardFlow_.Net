@@ -1,0 +1,14 @@
+FROM mysql:8.0
+
+# ENV variáveis default (substituídas por envs em ACI)
+ENV MYSQL_DATABASE=yardflowdb \
+    MYSQL_USER=yardflow \
+    MYSQL_PASSWORD=yardflowpass \
+    MYSQL_ROOT_PASSWORD=changeme
+
+COPY mysql-init/ /docker-entrypoint-initdb.d/
+
+# Confirma que vai rodar como usuário mysql
+USER mysql
+
+EXPOSE 3306

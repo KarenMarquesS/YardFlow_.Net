@@ -1,0 +1,36 @@
+# Dockerfile.dotnet
+
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+
+# copy csproj and restore first for caching
+COPY *.sln .
+# Se o projeto estiver em subpasta (ex: ChallengeYardFlow), ajuste COPY e dotnet restore accordingly:
+COPY ChallengeYardFlow/ChallengeYardFlow.csproj ./ChallengeYardFlow/
+WORKDIR /src/ChallengeYardFlow
+RUN dotnet restore
+
+# copy everything and publish
+COPY ChallengeYardFlow/. ./ 
+RUN dotnet publish -c Release -o /app/publish
+
+# Runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+WORKDIR /app
+
+# Criar usuário sem privilégios
+RUN addgroup --system dotnet && adduser --system --ingroup dotnet dotnetuser
+USER dotnetuser
+
+# Variavel de ambiente para o ASP.NET Core - expor a porta 5050
+ENV ASPNETCORE_URLS=http://+:5050
+COPY --from=build /app/publish ./
+EXPOSE 5050
+
+COPY --from=build /app/publish ./
+
+# Expose the port your app listens on (README indica 5050)
+EXPOSE 5050
+
+# Entry point
+ENTRYPOINT ["dotnet", "ChallengeYardFlow.dll"]
