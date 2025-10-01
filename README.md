@@ -63,25 +63,17 @@ Clone o repositório:
 
 ```bash
 git clone https://github.com/KarenMarquesS/YardFlow_.Net.git
-cd YardFlow_.Net/ChallengeYardFlow3_/ChallengeYardFlow/ChallengeYardFlow
+cd ChallengeYardFlow3_/ChallengeYardFlow/ChallengeYardFlow
+
+- permissão
+chmod +x ./scprit_app.sh
+
+- executando o script
+./scprit_app.sh
 
 
 
-🏃 Execução
-
-
-Exemplos para execução do CRUD
-POST
-{"Placa": "GEP5237",
-"Modelo": "Mottu-E",
-"IdMotor":"12",
-"ValorDiaria": "10"}
-
-PUT
-{"Placa": "GEP5237",
-"Modelo": "Mottu-POP",
-"IdMotor":"12",
-"ValorDiaria": "10"}
+🏃 Execução/ Testes
 
 Teste no MySQL
   docker run -it --rm mysql:8.0 mysql -h <IP> -P 3306 -u root -p
@@ -91,6 +83,28 @@ show databases;
 use devforgedb;
 
 show tables;
+
+
+Exemplos para execução do CRUD
+POST
+{"Placa": "GEP5237",
+"Modelo": "Mottu-E",
+"IdMotor":"12",
+"ValorDiaria": "10"}
+
+{"Placa": "VAR1234",
+"Modelo": "Mottu-Sport",
+"IdMotor":"14",
+"ValorDiaria": "15"}
+
+PUT
+{"id": 1,
+"Placa": "GEP5237",
+"Modelo": "Mottu-POP",
+"IdMotor":"12",
+"ValorDiaria": "12"}
+
+
 
 
 
