@@ -1,36 +1,32 @@
-# Dockerfile.dotnet
-
+# Estágio 1: Build da aplicação
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-
-# copy csproj and restore first for caching
-COPY *.sln .
-# Se o projeto estiver em subpasta (ex: ChallengeYardFlow), ajuste COPY e dotnet restore accordingly:
-COPY ChallengeYardFlow/ChallengeYardFlow.csproj ./ChallengeYardFlow/
-WORKDIR /src/ChallengeYardFlow
-RUN dotnet restore
-
-# copy everything and publish
-COPY ChallengeYardFlow/. ./ 
-RUN dotnet publish -c Release -o /app/publish
-
-# Runtime image
+ 
+# Copia apenas o csproj primeiro para restaurar dependências e melhorar o aproveitamento do cache do Docker
+COPY ChallengeYardFlow.csproj ./
+RUN dotnet restore "ChallengeYardFlow.csproj"
+ 
+# Copia o resto dos arquivos da aplicação
+COPY . .
+ 
+# Publica o resultado no diretório /app/publish
+RUN dotnet publish "ChallengeYardFlow.csproj" -c Release -o /app/publish --no-restore
+ 
+# Estágio 2: Execução da aplicação
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
+ 
+# Copia apenas os arquivos publicados do build
+COPY --from=build /app/publish .
+ 
+# Configurar portas da API
+ENV ASPNETCORE_URLS=http://+:8080
+EXPOSE 8080
 
-# Criar usuário sem privilégios
-RUN addgroup --system dotnet && adduser --system --ingroup dotnet dotnetuser
-USER dotnetuser
-
-# Variavel de ambiente para o ASP.NET Core - expor a porta 5050
-ENV ASPNETCORE_URLS=http://+:5050
-COPY --from=build /app/publish ./
-EXPOSE 5050
-
-COPY --from=build /app/publish ./
-
-# Expose the port your app listens on (README indica 5050)
-EXPOSE 5050
-
-# Entry point
+ 
+# Executar com usuário não privilegiado
+RUN addgroup --system appuser && adduser --system --ingroup appuser appuser
+RUN chown -R appuser:appuser /app
+USER appuser
+ 
 ENTRYPOINT ["dotnet", "ChallengeYardFlow.dll"]
