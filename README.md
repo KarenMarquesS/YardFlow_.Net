@@ -62,7 +62,7 @@ O **YardFlow** é uma API desenvolvida em **.NET 8** para controle de entrada, s
 Clone o repositório:
 
 ```bash
-git clone 
+git clone https://github.com/KarenMarquesS/YardFlow_.Net.git
 cd YardFlow_.Net/ChallengeYardFlow3_/ChallengeYardFlow/ChallengeYardFlow
 
 
