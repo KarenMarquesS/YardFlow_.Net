@@ -66,10 +66,10 @@ git clone https://github.com/KarenMarquesS/YardFlow_.Net.git
 cd ChallengeYardFlow3_/ChallengeYardFlow/ChallengeYardFlow
 
 - permissão
-chmod +x ./scprit_app.sh
+chmod +x ./script_app.sh
 
 - executando o script
-./scprit_app.sh
+./script_app.sh
 
 
 
