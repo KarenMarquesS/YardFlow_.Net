@@ -62,20 +62,37 @@ O **YardFlow** é uma API desenvolvida em **.NET 8** para controle de entrada, s
 Clone o repositório:
 
 ```bash
-git clone https://github.com/lerri05/ChallengeYardFlow.git
+git clone 
 cd YardFlow_.Net/ChallengeYardFlow3_/ChallengeYardFlow/ChallengeYardFlow
 
 
 
-Aplique as migrações:
-
-dotnet ef database update
-
 🏃 Execução
 
-Para executar o projeto localmente:
 
-dotnet run
+Exemplos para execução do CRUD
+POST
+{"Placa": "GEP5237",
+"Modelo": "Mottu-E",
+"IdMotor":"12",
+"ValorDiaria": "10"}
+
+PUT
+{"Placa": "GEP5237",
+"Modelo": "Mottu-POP",
+"IdMotor":"12",
+"ValorDiaria": "10"}
+
+Teste no MySQL
+  docker run -it --rm mysql:8.0 mysql -h <IP> -P 3306 -u root -p
+
+show databases;
+
+use devforgedb;
+
+show tables;
+
+
 
 📘 Documentação da API
 
