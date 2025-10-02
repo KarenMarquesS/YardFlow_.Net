@@ -9,12 +9,10 @@ O **YardFlow** é uma API desenvolvida em **.NET 8** para controle de entrada, s
 
 - [🚀 Funcionalidades](#-funcionalidades)  
 - [💻 Tecnologias](#-tecnologias)  
-- [📋 Pré-requisitos](#-pré-requisitos)  
+- [📋 Desenho da arquitetura](#-desenho-de-arquitetura)  
 - [🔧 Instalação](#-instalação)  
 - [🏃 Execução](#-execução)  
-- [📘 Documentação da API](#-documentação-da-api)  
-- [🗂 Estrutura](#-estrutura)  
-- [🚧 Status da Aplicação](#-status-da-aplicação)  
+
 - [👥 Autores](#-autores)
 
 ---
@@ -49,20 +47,21 @@ O **YardFlow** é uma API desenvolvida em **.NET 8** para controle de entrada, s
 
 ---
 
-## 📋 Pré-requisitos
+## 📋 Desenho da Arquitetura
 
-- .NET 8 SDK instalado  
-- Banco de Dados Oracle configurado  
-- Editor de código (VS Code, Visual Studio, etc.)
+
+![desenho](https://github.com/user-attachments/assets/a5bc2d49-d293-4902-953a-69c60b1e4c7d)
+
+
 
 ---
 
-## 🔧 Instalação
+## 🔧 Repositorio
 
-Clone o repositório:
+Clone o repositório: git clone https://github.com/KarenMarquesS/YardFlow_.Net.git
 
 ```bash
-git clone https://github.com/KarenMarquesS/YardFlow_.Net.git
+
 cd ChallengeYardFlow3_/ChallengeYardFlow/ChallengeYardFlow
 
 - permissão
